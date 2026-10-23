@@ -1,0 +1,34 @@
+{
+  "name": "myathena-test-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fullscreen desktop test app with camera preview",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "build": "vite build",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "vite": "^6.0.5",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.myathena.testapp",
+    "productName": "myAthena Test",
+    "files": ["dist/**/*", "electron/**/*", "package.json"],
+    "mac": { "category": "public.app-category.education" },
+    "dmg": {},
+    "win": { "target": "nsis" },
+    "linux": { "target": "AppImage" }
+  }
+}
